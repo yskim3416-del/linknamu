@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        sans: ["Pretendard Variable", "Pretendard", "system-ui", "-apple-system", "sans-serif"],
       },
     },
   },

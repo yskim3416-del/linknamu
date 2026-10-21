@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* 크림색에서 연한 살구색으로 흐르는 따뜻한 배경 */
+  body {
+    min-height: 100dvh;
+    background: linear-gradient(165deg, #fffaf2 0%, #fdf1e4 45%, #fbe1cf 100%);
+  }
+
+  .dark body {
+    background: linear-gradient(165deg, #1b1714 0%, #211a16 50%, #2b1f19 100%);
+  }
+}

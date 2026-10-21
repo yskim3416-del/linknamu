@@ -2,7 +2,7 @@
 
 import type { LinkItem } from "@/data/profile";
 
-export default function LinkCard({ id, title, url }: LinkItem) {
+export default function LinkCard({ id, title, url, emoji }: LinkItem) {
   const handleClick = () => {
     // 페이지를 떠나도 요청이 유실되지 않도록 sendBeacon 우선 사용
     const body = JSON.stringify({ id });
@@ -15,15 +15,22 @@ export default function LinkCard({ id, title, url }: LinkItem) {
     }
   };
 
+  // mailto: 링크는 새 탭 없이 메일 앱으로 바로 연결
+  const isExternal = !url.startsWith("mailto:");
+
   return (
     <a
       href={url}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
       onClick={handleClick}
-      className="block w-full rounded-xl border border-neutral-300 bg-white px-5 py-4 text-center font-medium shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-900"
+      className="grid w-full grid-cols-[1.75rem_1fr_1.75rem] items-center rounded-2xl border border-white/70 bg-white/45 px-5 py-[1.125rem] font-medium text-stone-800 shadow-[0_8px_24px_-12px_rgba(140,82,45,0.25)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-px hover:bg-white/65 hover:shadow-[0_12px_28px_-12px_rgba(140,82,45,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70 dark:border-white/10 dark:bg-white/[0.06] dark:text-stone-100 dark:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] dark:hover:bg-white/10"
     >
-      {title}
+      {/* 이모지는 왼쪽에 고정하고 제목은 가운데 정렬 */}
+      <span aria-hidden="true" className="text-lg leading-none">
+        {emoji}
+      </span>
+      <span className="text-center">{title}</span>
     </a>
   );
 }
