@@ -11,7 +11,11 @@ function getMongoClient(): Promise<MongoClient> | null {
   const uri = process.env.MONGODB_URI;
   if (!uri) return null;
   if (!globalForMongo._mongoClientPromise) {
-    globalForMongo._mongoClientPromise = new MongoClient(uri).connect();
+    // 연결에 실패하면 캐시를 비워 다음 요청에서 다시 시도한다
+    globalForMongo._mongoClientPromise = new MongoClient(uri).connect().catch((error) => {
+      globalForMongo._mongoClientPromise = undefined;
+      throw error;
+    });
   }
   return globalForMongo._mongoClientPromise;
 }
