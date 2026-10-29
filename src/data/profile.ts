@@ -14,6 +14,7 @@ export const profile = {
 export const links: LinkItem[] = [
   { id: "blog", title: "북리뷰 블로그 (네이버)", url: "https://blog.naver.com/readtogrow", emoji: "📚" },
   { id: "tistory", title: "티스토리 블로그", url: "https://mungs120.tistory.com/", emoji: "✍️" },
+  { id: "company-deck", title: "HTML회사소개서 sample", url: "/grovera_deck_share.html", emoji: "🏢" },
   { id: "instagram", title: "인스타그램", url: "https://www.instagram.com/happy.moment110/", emoji: "📸" },
   { id: "email", title: "이메일", url: "mailto:yskim3416@gmail.com", emoji: "✉️" },
 ];
